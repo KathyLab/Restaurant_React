@@ -1,14 +1,13 @@
-import React, { Component }from 'react';
-import Main from './components/MainComponent';
-import './App.css';
-import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { ConfigureStore } from './redux/configureStore';
+import React, { Component } from "react";
+import Main from "./components/MainComponent";
+import "./App.css";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { ConfigureStore } from "./redux/configureStore";
 
 const store = ConfigureStore();
 
 class App extends Component {
-
   render() {
     //a router component can only have one child element.
     return (
@@ -17,8 +16,8 @@ class App extends Component {
           <div>
             <Main />
           </div>
-        </BrowserRouter>    
-      </Provider>    
+        </BrowserRouter>
+      </Provider>
     );
   }
 }
