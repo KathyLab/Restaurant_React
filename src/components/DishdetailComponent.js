@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+/* eslint-disable */
+import React, { Component } from 'react';
 import {
   Card,
   CardImg,
@@ -14,12 +15,12 @@ import {
   ModalHeader,
   ModalBody,
   Label
-} from "reactstrap";
-import { Link } from "react-router-dom";
-import { Control, LocalForm, Errors } from "react-redux-form";
-import { FadeTransform, Fade, Stagger } from "react-animation-components";
-import { Loading } from "./LoadingComponent";
-import { baseUrl } from "../shared/baseUrl";
+} from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { Control, LocalForm, Errors } from 'react-redux-form';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
+import { Loading } from './LoadingComponent';
+import { baseUrl } from '../shared/baseUrl';
 
 // const required = (val) => val && val.length;
 const minLength = len => val => val && val.length >= len;
@@ -46,24 +47,15 @@ class CommentForm extends Component {
   handleSubmit(values) {
     this.toggleModal();
     // console.log(`Cuurent state is: ${JSON.stringify(values)}`);
-    this.props.postComment(
-      this.props.dishId,
-      values.rating,
-      values.author,
-      values.comment
-    );
+    this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
   }
 
   render() {
     return (
       <>
-        <Button
-          outline
-          className="sencondary"
-          type="submit"
-          onClick={this.toggleModal}
-        >
-          <span className="fa fa-pencil" /> Submit Comment
+        <Button outline className="sencondary" type="submit" onClick={this.toggleModal}>
+          <span className="fa fa-pencil" />
+          Submit Comment
         </Button>
         <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
           <ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
@@ -106,8 +98,8 @@ class CommentForm extends Component {
                   model=".author"
                   show="touched"
                   messages={{
-                    minLength: "Must be greater than 2 characters",
-                    maxLength: "Must be 15 characters or less"
+                    minLength: 'Must be greater than 2 characters',
+                    maxLength: 'Must be 15 characters or less'
                   }}
                 />
               </Row>
@@ -140,16 +132,11 @@ function RenderDish({ dish }) {
       <FadeTransform
         in
         transformProps={{
-          exitTransform: "scale(0.5) translateY(-50%)"
+          exitTransform: 'scale(0.5) translateY(-50%)'
         }}
       >
         <Card>
-          <CardImg
-            top
-            width="100%"
-            src={baseUrl + dish.image}
-            alt={dish.name}
-          />
+          <CardImg top width="100%" src={baseUrl + dish.image} alt={dish.name} />
           <CardBody>
             <CardTitle>{dish.name}</CardTitle>
             <CardText>{dish.description}</CardText>
@@ -167,11 +154,11 @@ function RenderComments({ comments, postComment, dishId }) {
         <li>
           <p>{comment.comment}</p>
           <p>
-            -- {comment.author},{" "}
-            {new Intl.DateTimeFormat("en-US", {
-              year: "numeric",
-              month: "short",
-              day: "2-digit"
+            -- {comment.author},{' '}
+            {new Intl.DateTimeFormat('en-US', {
+              year: 'numeric',
+              month: 'short',
+              day: '2-digit'
             }).format(new Date(Date.parse(comment.date)))}
           </p>
         </li>

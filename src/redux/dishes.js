@@ -1,9 +1,10 @@
-import * as ActionTypes from "./ActionTypes";
+/* eslint-disable import/prefer-default-export */
+import * as ActionTypes from './ActionTypes';
 
-/* 
-    Initially, the isLoading property is true because the dishes is empty here. 
-    So, that means that you'll need to load the dishes' information from somewhere 
-    before the details of the dishes become available within your state. 
+/*
+    Initially, the isLoading property is true because the dishes is empty here.
+    So, that means that you'll need to load the dishes' information from somewhere
+    before the details of the dishes become available within your state.
 */
 
 export const Dishes = (
@@ -24,7 +25,12 @@ export const Dishes = (
       };
 
     case ActionTypes.DISHES_LOADING:
-      return { ...state, isLoading: true, errMess: null, dishes: [] };
+      return {
+        ...state,
+        isLoading: true,
+        errMess: null,
+        dishes: []
+      };
 
     case ActionTypes.DISHES_FAILED:
       return {

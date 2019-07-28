@@ -1,5 +1,6 @@
-import * as ActionTypes from "./ActionTypes";
+import * as ActionTypes from './ActionTypes';
 
+// eslint-disable-next-line import/prefer-default-export
 export const Leaders = (
   state = {
     isLoading: true,
@@ -18,7 +19,12 @@ export const Leaders = (
       };
 
     case ActionTypes.LEADERS_LOADING:
-      return { ...state, isLoading: true, errMess: null, leaders: [] };
+      return {
+        ...state,
+        isLoading: true,
+        errMess: null,
+        leaders: []
+      };
 
     case ActionTypes.LEADERS_FAILED:
       return {

@@ -1,10 +1,10 @@
-import React from "react";
+/* eslint-disable import/prefer-default-export */
+/* eslint-disable quotes */
+import React from 'react';
 
-export const Loading = () => {
-  return (
-    <div className="col-12">
-      <span className="fa fa-spinner fa-pulse fa-3x fa-fw text-primary" />
-      <p> Loading . . .</p>
-    </div>
-  );
-};
+export const Loading = () => (
+  <div className="col-12">
+    <span className="fa fa-spinner fa-pulse fa-3x fa-fw text-primary" />
+    <p> Loading . . .</p>
+  </div>
+);

@@ -1,15 +1,9 @@
-import React from "react";
-import {
-  Card,
-  CardImg,
-  CardImgOverlay,
-  CardTitle,
-  Breadcrumb,
-  BreadcrumbItem
-} from "reactstrap";
-import { Link } from "react-router-dom";
-import { Loading } from "./LoadingComponent";
-import { baseUrl } from "../shared/baseUrl";
+/* eslint-disable */
+import React from 'react';
+import { Card, CardImg, CardImgOverlay, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { Loading } from './LoadingComponent';
+import { baseUrl } from '../shared/baseUrl';
 
 function RenderMenuItem({ dish }) {
   return (
@@ -26,6 +20,7 @@ function RenderMenuItem({ dish }) {
 
 const Menu = props => {
   const menu = props.dishes.dishes.map(dish => {
+    // eslint-disable-next-line max-len
     //whenever you construct a list of items in React, every item requires a key attribute to be specified for it
     return (
       <div key={dish.id} className="col-12 col-md-5 m-1">

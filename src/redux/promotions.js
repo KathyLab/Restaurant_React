@@ -1,5 +1,6 @@
-import * as ActionTypes from "./ActionTypes";
+import * as ActionTypes from './ActionTypes';
 
+// eslint-disable-next-line import/prefer-default-export
 export const Promotions = (
   state = {
     isLoading: true,
@@ -18,7 +19,12 @@ export const Promotions = (
       };
 
     case ActionTypes.PROMOS_LOADING:
-      return { ...state, isLoading: true, errMess: null, promomtions: [] };
+      return {
+        ...state,
+        isLoading: true,
+        errMess: null,
+        promomtions: []
+      };
 
     case ActionTypes.PROMOS_FAILED:
       return {

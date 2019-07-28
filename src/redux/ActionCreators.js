@@ -1,5 +1,7 @@
-import * as ActionTypes from "./ActionTypes";
-import { baseUrl } from "../shared/baseUrl";
+/* eslint-disable no-alert */
+/* eslint-disable arrow-parens */
+import * as ActionTypes from './ActionTypes';
+import { baseUrl } from '../shared/baseUrl';
 
 export const addComment = comment => ({
   type: ActionTypes.ADD_COMMENT,
@@ -8,66 +10,60 @@ export const addComment = comment => ({
 
 export const postComment = (dishId, rating, author, comment) => dispatch => {
   const newComment = {
-    dishId: dishId,
-    rating: rating,
-    author: author,
-    comment: comment
+    dishId,
+    rating,
+    author,
+    comment
   };
   newComment.date = new Date().toISOString();
 
-  return fetch(baseUrl + "comments", {
-    method: "POST",
+  return fetch(`${baseUrl}comments`, {
+    method: 'POST',
     body: JSON.stringify(newComment),
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json'
     },
-    credentials: "same-origin"
+    credentials: 'same-origin'
   })
     .then(
       response => {
         if (response.ok) {
           return response;
-        } else {
-          var error = new Error(
-            "Error " + response.status + ": " + response.statusText
-          );
-          error.response = response;
-          throw error;
         }
+        const error = new Error(`Error ${response.status}: ${response.statusText}`);
+        error.response = response;
+        throw error;
       },
-      //situations where the server dosen't resopnd
+      // situations where the server dosen't resopnd
       error => {
-        var errmess = new Error(error.message);
+        const errmess = new Error(error.message);
         throw errmess;
       }
     )
     .then(response => response.json())
     .then(response => dispatch(addComment(response)))
     .catch(error => {
-      console.log("Post comments ", error.message);
-      alert("Your comment could not be posted\nError: " + error.message);
+      // console.log("Post comments ", error.message);
+      alert(`Your comment could not be posted\nError: ${error.message}`);
     });
 };
 
 export const fetchDishes = () => dispatch => {
   dispatch(dishesLoading(true));
 
-  return fetch(baseUrl + "dishes")
+  return fetch(`${baseUrl}dishes`)
     .then(
       response => {
         if (response.ok) {
           return response;
-        } else {
-          var error = new Error(
-            "Error " + response.status + ": " + response.statusText
-          );
-          error.response = response;
-          throw error;
         }
+        const error = new Error(`Error ${response.status}: ${response.statusText}`);
+        error.response = response;
+        throw error;
       },
-      //situations where the server dosen't resopnd
+      // situations where the server dosen't resopnd
       error => {
-        var errmess = new Error(error.message);
+        const errmess = new Error(error.message);
         throw errmess;
       }
     )
@@ -76,7 +72,10 @@ export const fetchDishes = () => dispatch => {
     .catch(error => dispatch(dishesFailed(error.message)));
 };
 
-// this is going to inform somebody saying that the dishes are beginning to be loaded and so you need to wait for the dishes to be loaded.
+/*
+this is going to inform somebody saying that the dishes are beginning to be loaded
+and so you need to wait for the dishes to be loaded.
+*/
 export const dishesLoading = () => ({
   type: ActionTypes.DISHES_LOADING
 });
@@ -91,29 +90,24 @@ export const addDishes = dishes => ({
   payload: dishes
 });
 
-export const fetchComments = () => dispatch => {
-  return fetch(baseUrl + "comments")
-    .then(
-      response => {
-        if (response.ok) {
-          return response;
-        } else {
-          var error = new Error(
-            "Error " + response.status + ": " + response.statusText
-          );
-          error.response = response;
-          throw error;
-        }
-      },
-      error => {
-        var errmess = new Error(error.message);
-        throw errmess;
+export const fetchComments = () => dispatch => fetch(`${baseUrl}comments`)
+  .then(
+    response => {
+      if (response.ok) {
+        return response;
       }
-    )
-    .then(response => response.json())
-    .then(comments => dispatch(addComments(comments)))
-    .catch(error => dispatch(commentsFailed(error.message)));
-};
+      const error = new Error(`Error ${response.status}: ${response.statusText}`);
+      error.response = response;
+      throw error;
+    },
+    error => {
+      const errmess = new Error(error.message);
+      throw errmess;
+    }
+  )
+  .then(response => response.json())
+  .then(comments => dispatch(addComments(comments)))
+  .catch(error => dispatch(commentsFailed(error.message)));
 
 export const commentsFailed = errmess => ({
   type: ActionTypes.COMMENTS_FAILED,
@@ -128,22 +122,19 @@ export const addComments = comments => ({
 export const fetchPromos = () => dispatch => {
   dispatch(promosLoading());
 
-  return fetch(baseUrl + "promotions")
+  return fetch(`${baseUrl}promotions`)
     .then(
       response => {
         if (response.ok) {
           return response;
-        } else {
-          var error = new Error(
-            "Error" + response.status + ": " + response.statusText
-          );
-          error.response = response;
-          throw error;
         }
+        const error = new Error(`Error${response.status}: ${response.statusText}`);
+        error.response = response;
+        throw error;
       },
-      //situations where the server dosen't resopnd
+      // situations where the server dosen't resopnd
       error => {
-        var errmess = new Error(error.message);
+        const errmess = new Error(error.message);
         throw errmess;
       }
     )
@@ -169,22 +160,19 @@ export const addPromos = promos => ({
 export const fetchLeaders = () => dispatch => {
   dispatch(leadersLoading());
 
-  return fetch(baseUrl + "leaders")
+  return fetch(`${baseUrl}leaders`)
     .then(
       response => {
         if (response.ok) {
           return response;
-        } else {
-          var error = new Error(
-            "Error" + response.status + ": " + response.statusText
-          );
-          error.response = response;
-          throw error;
         }
+        const error = new Error(`Error${response.status}: ${response.statusText}`);
+        error.response = response;
+        throw error;
       },
-      //situations where the server dosen't resopnd
+      // situations where the server dosen't resopnd
       error => {
-        var errmess = new Error(error.message);
+        const errmess = new Error(error.message);
         throw errmess;
       }
     )
@@ -207,37 +195,32 @@ export const addLeaders = leaders => ({
   payload: leaders
 });
 
-export const postFeedback = feedback => dispatch => {
-  return fetch(baseUrl + "feedback", {
-    method: "POST",
-    body: JSON.stringify(feedback),
-    headers: {
-      "Content-Type": "application/json"
-    },
-    credentials: "same-origin"
-  })
-    .then(
-      response => {
-        if (response.ok) {
-          return response;
-        } else {
-          var error = new Error(
-            "Error " + response.status + ": " + response.statusText
-          );
-          error.response = response;
-          throw error;
-        }
-      },
-      //situations where the server dosen't resopnd
-      error => {
-        var errmess = new Error(error.message);
-        throw errmess;
+export const postFeedback = feedback => dispatch => fetch(`${baseUrl}feedback`, {
+  method: 'POST',
+  body: JSON.stringify(feedback),
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  credentials: 'same-origin'
+})
+  .then(
+    response => {
+      if (response.ok) {
+        return response;
       }
-    )
-    .then(response => response.json())
-    .then(response => alert("Current State is:" + JSON.stringify(response)))
-    .catch(error => {
-      console.log("Feedback ", error.message);
-      alert("Your feedback could not be posted\nError: " + error.message);
-    });
-};
+      const error = new Error(`Error ${response.status}: ${response.statusText}`);
+      error.response = response;
+      throw error;
+    },
+    // situations where the server dosen't resopnd
+    error => {
+      const errmess = new Error(error.message);
+      throw errmess;
+    }
+  )
+  .then(response => response.json())
+  .then(response => alert(`Current State is:${JSON.stringify(response)}`))
+  .catch(error => {
+    // console.log("Feedback ", error.message);
+    alert(`Your feedback could not be posted\nError: ${error.message}`);
+  });

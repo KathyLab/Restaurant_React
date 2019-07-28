@@ -1,5 +1,6 @@
-import * as ActionTypes from "./ActionTypes";
+import * as ActionTypes from './ActionTypes';
 
+// eslint-disable-next-line import/prefer-default-export
 export const Comments = (
   state = {
     errMess: null,
@@ -24,11 +25,15 @@ export const Comments = (
         comments: []
       };
 
-    case ActionTypes.ADD_COMMENT:
-      var comment = action.payload;
+    case ActionTypes.ADD_COMMENT: {
+      const comment = action.payload;
       // comment.id = state.comments.length;
       // comment.date = new Date().toISOString();
-      return { ...state, comments: state.comments.concat(comment) };
+      return {
+        ...state,
+        comments: state.comments.concat(comment)
+      };
+    }
     default:
       return state;
   }
